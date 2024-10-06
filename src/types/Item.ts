@@ -1,7 +1,3 @@
-export type ItemList = {
-  [key: string]: Item;
-};
-
 export type Item = {
   name: string;
   description: string;

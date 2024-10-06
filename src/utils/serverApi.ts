@@ -1,62 +1,41 @@
 "use server";
 
 import { BASE_URL } from "@/constants/api";
-import { ChampionDetail, ChampionList } from "@/types/Champion";
-import { ItemList } from "@/types/Item";
+import { Champion, ChampionDetail } from "@/types/Champion";
+import { Item } from "@/types/Item";
 
-async function getLatestVersion() {
-  const res = await fetch(`${BASE_URL}/api/versions.json`, {
-    cache: "no-store",
-  });
-
-  // if (!res.ok) {
-  //   return {
-  //     message: "Please enter a valid API KEY",
-  //   };
-  // }
-
-  const data: string[] = await res.json();
-  return data[0];
+async function getLatestVersion(): Promise<string> {
+  const res = await fetch(`${BASE_URL}/api/versions.json`);
+  const versionData: string[] = await res.json();
+  return versionData[0];
 }
 
-export async function getChampionList() {
+export async function getChampionList(): Promise<Champion[]> {
+  const latestVersion = await getLatestVersion();
+  const res = await fetch(
+    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/champion.json`
+  );
+  const { data: championData } = await res.json();
+  return Object.values(championData);
+}
+//
+export async function getChampionDetail(
+  championId: string
+): Promise<ChampionDetail> {
   const latestVersion = await getLatestVersion();
 
   const res = await fetch(
-    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/champion.json`,
-    {
-      cache: "no-store",
-    }
+    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/champion/${championId}.json`
   );
-
-  const data: ChampionList = await res.json();
-  return data;
+  const { data: ChampionDetailData } = await res.json();
+  return ChampionDetailData[championId];
 }
 
-export async function getChampionDetail(id: string) {
+export async function getItemList(): Promise<Item[]> {
   const latestVersion = await getLatestVersion();
-
   const res = await fetch(
-    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/champion/${id}.json`,
-    {
-      cache: "no-store",
-    }
+    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/item.json`
   );
-
-  const data: { [key: string]: ChampionDetail } = await res.json();
-  return data;
-}
-
-export async function getItemList() {
-  const latestVersion = await getLatestVersion();
-
-  const res = await fetch(
-    `${BASE_URL}/cdn/${latestVersion}/data/ko_KR/item.json`,
-    {
-      cache: "no-store",
-    }
-  );
-
-  const data: ItemList = await res.json();
-  return data;
+  const { data: itemData } = await res.json();
+  return Object.values(itemData);
 }
