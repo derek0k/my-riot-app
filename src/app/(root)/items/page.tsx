@@ -9,8 +9,8 @@ export default async function ItemsPage() {
   return (
     <>
       <h1>아이템 목록</h1>
-      {itemList.map((item) => (
-        <div key={item.name}>
+      {itemList.map((item, i) => (
+        <div key={`item.name ${i}`}>
           <Image
             priority
             src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${item.image.full}`}
