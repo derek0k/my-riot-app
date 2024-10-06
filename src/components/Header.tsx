@@ -1,11 +1,5 @@
+import { navLinks } from "@/constants/navLinks";
 import Link from "next/link";
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/champions", label: "Champion List" },
-  { href: "/items", label: "Item List" },
-  { href: "/rotation", label: "Champion Rotation" },
-];
 
 export default function Header() {
   return (
