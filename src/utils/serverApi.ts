@@ -4,7 +4,7 @@ import { BASE_URL } from "@/constants/api";
 import { Champion, ChampionDetail } from "@/types/Champion";
 import { Item } from "@/types/Item";
 
-async function getLatestVersion(): Promise<string> {
+export async function getLatestVersion(): Promise<string> {
   const res = await fetch(`${BASE_URL}/api/versions.json`);
   const versionData: string[] = await res.json();
   return versionData[0];
