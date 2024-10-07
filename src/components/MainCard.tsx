@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function MainCard({ label, href, imageSrc }) {
+type Props = {
+  label: string;
+  href: string;
+  imageSrc: string;
+};
+
+export default function MainCard({ label, href, imageSrc }: Props) {
   return (
     <Link
       href={href}
