@@ -26,26 +26,29 @@ export default async function ChampionsDetailPage({ params }: Props) {
 
   return (
     <>
-      <h1>{name}</h1>
-      <h2>{title}</h2>
-      <Image
-        priority
-        src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${id}.png`}
-        alt={name}
-        width={160}
-        height={160}
-      />
-      <p>{lore}</p>
-      <div>
-        <h3>스탯</h3>
-        <ul>
-          {stats.map((stat) => (
-            <li key={stat.key}>
-              <strong>{stat.key}:</strong> <span>{stat.value}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <section className="flex flex-col gap-4 mt-8 text-red-400">
+        <h1 className="text-5xl text-red-700">{name}</h1>
+        <h2 className="text-2xl text-gray-500">{title}</h2>
+        <Image
+          priority
+          src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${id}.png`}
+          alt={name}
+          width={200}
+          height={160}
+          className="mx-auto"
+        />
+        <p>{lore}</p>
+        <div>
+          <h3>스탯</h3>
+          <ul>
+            {stats.map((stat) => (
+              <li key={stat.key}>
+                <strong>{stat.key}:</strong> <span>{stat.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }
