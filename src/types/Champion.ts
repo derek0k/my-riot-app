@@ -114,10 +114,8 @@ export type ChampionDetail = {
     cooldownBurn: string;
     cost: number[];
     costBurn: string;
-    datavalues: {};
     effect: (number[] | null)[];
     effectBurn: string[];
-    vars: any[];
     costType: string;
     maxammo: string;
     range: number[];
@@ -146,5 +144,4 @@ export type ChampionDetail = {
       h: number;
     };
   };
-  recommended: any[];
 };

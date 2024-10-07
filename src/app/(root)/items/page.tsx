@@ -1,6 +1,5 @@
 import { getItemList, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
-import Link from "next/link";
 
 export default async function ItemsPage() {
   const latestVersion = await getLatestVersion();
