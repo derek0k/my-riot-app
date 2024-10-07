@@ -1,10 +1,9 @@
 "use client";
 
+import ItemCard from "@/components/ItemCard";
 import { Champion } from "@/types/Champion";
 import { getChampionRotation } from "@/utils/riotApi";
 import { getLatestVersion } from "@/utils/serverApi";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function RotationPage() {
@@ -25,20 +24,18 @@ export default function RotationPage() {
 
   return (
     <>
-      <h1>챔피언 로테이션</h1>
-      {freeChampions.map((champion) => (
-        <Link href={`/champions/${champion.id}`} key={champion.id}>
-          <Image
-            priority
-            src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.id}.png`}
-            alt={champion.name}
-            width={80}
-            height={80}
+      <h1 className="text-3xl font-bold text-red-700">챔피언 로테이션</h1>
+      <section className="grid grid-cols-4 gap-4 py-6">
+        {freeChampions.map((champion) => (
+          <ItemCard
+            key={champion.id}
+            href={`/champions/${champion.id}`}
+            imageSrc={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.id}.png`}
+            title={champion.name}
+            desc={champion.title}
           />
-          <h2>{champion.name}</h2>
-          <p>{champion.title}</p>
-        </Link>
-      ))}
+        ))}
+      </section>
     </>
   );
 }
