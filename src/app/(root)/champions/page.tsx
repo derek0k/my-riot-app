@@ -1,6 +1,5 @@
+import ItemCard from "@/components/ItemCard";
 import { getChampionList, getLatestVersion } from "@/utils/serverApi";
-import Image from "next/image";
-import Link from "next/link";
 
 export const revalidate = 1000 * 60 * 60 * 24;
 
@@ -10,20 +9,18 @@ export default async function ChampionsPage() {
 
   return (
     <>
-      <h1>챔피언 목록</h1>
-      {championList.map((champion) => (
-        <Link href={`/champions/${champion.id}`} key={champion.id}>
-          <Image
-            priority
-            src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.id}.png`}
-            alt={champion.name}
-            width={80}
-            height={80}
+      <h1 className="text-3xl font-bold text-red-700">챔피언 목록</h1>
+      <section className="grid grid-cols-4 gap-4 py-6">
+        {championList.map((champion) => (
+          <ItemCard
+            key={champion.id}
+            href={`/champions/${champion.id}`}
+            imageSrc={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/champion/${champion.id}.png`}
+            title={champion.name}
+            desc={champion.title}
           />
-          <h2>{champion.name}</h2>
-          <p>{champion.title}</p>
-        </Link>
-      ))}
+        ))}
+      </section>
     </>
   );
 }
