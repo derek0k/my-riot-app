@@ -1,5 +1,5 @@
+import ItemCard from "@/components/ItemCard";
 import { getItemList, getLatestVersion } from "@/utils/serverApi";
-import Image from "next/image";
 
 export default async function ItemsPage() {
   const latestVersion = await getLatestVersion();
@@ -7,20 +7,18 @@ export default async function ItemsPage() {
 
   return (
     <>
-      <h1>아이템 목록</h1>
-      {itemList.map((item, i) => (
-        <div key={`item.name ${i}`}>
-          <Image
-            priority
-            src={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${item.image.full}`}
-            alt={item.name}
-            width={80}
-            height={80}
+      <h1 className="text-3xl font-bold text-red-700">아이템 목록</h1>
+      <section className="grid grid-cols-4 gap-4 py-6">
+        {itemList.map((item, i) => (
+          <ItemCard
+            key={`item.name ${i}`}
+            href={`/items/${item.name}`}
+            imageSrc={`https://ddragon.leagueoflegends.com/cdn/${latestVersion}/img/item/${item.image.full}`}
+            title={item.name}
+            desc={item.plaintext}
           />
-          <h2>{item.name}</h2>
-          <p>{item.plaintext}</p>
-        </div>
-      ))}
+        ))}
+      </section>
     </>
   );
 }
