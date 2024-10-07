@@ -3,14 +3,14 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="relative flex h-[60px] justify-center items-center">
-      {navLinks.map(({ href, label }) => (
-        <Link href={href} key={label}>
-          <button className="bg-gray-800 text-white px-3 py-2 rounded-md">
+    <header className="fixed top-0 bg-section w-full py-6">
+      <nav className="container mx-auto flex justify-around">
+        {navLinks.map(({ href, label }) => (
+          <Link href={href} key={label} className="hover:text-red-700">
             {label}
-          </button>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }
