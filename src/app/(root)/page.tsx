@@ -9,7 +9,7 @@ export default async function HomePage() {
         <p>Riot Games API를 활용하여 챔피언과 아이템 정보를 제공합니다.</p>
       </div>
       {navLinks
-        .filter((link) => link.label !== "Home")
+        .filter((link) => link.label !== "홈")
         .map(({ href, imageSrc, label }) => (
           <MainCard key={label} label={label} href={href} imageSrc={imageSrc} />
         ))}
