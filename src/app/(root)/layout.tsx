@@ -9,7 +9,7 @@ export default async function Layout({
   return (
     <>
       <Header />
-      <main className="flex-1 py-28">{children}</main>
+      <main className="flex-1 py-28 mx-10 lg:mx-24">{children}</main>
       <Footer />
     </>
   );
