@@ -9,18 +9,23 @@ import { useEffect, useState } from "react";
 export default function RotationPage() {
   const [freeChampions, setFreeChampions] = useState<Champion[]>([]);
   const [latestVersion, setLatestVersion] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const version = await getLatestVersion();
       setLatestVersion(version);
 
       const data = await getChampionRotation();
       setFreeChampions(data);
+      setIsLoading(false);
     };
 
     fetchData();
   }, []);
+
+  if (isLoading) return <>Loading...</>;
 
   return (
     <>
