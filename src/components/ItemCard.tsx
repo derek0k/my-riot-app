@@ -1,3 +1,4 @@
+import { truncateDescription } from "@/utils/championUtils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,8 +10,7 @@ type Props = {
 };
 
 export default function ItemCard({ href, imageSrc, title, desc }: Props) {
-  const displayDesc =
-    desc && desc.length > 24 ? `${desc.slice(0, 23)} ⋯` : desc;
+  const displayDesc = truncateDescription(desc, 24);
 
   return (
     <div className="border border-gray-500 rounded-sm min-h-48 p-1">
