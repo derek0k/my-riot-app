@@ -15,7 +15,13 @@ export default function ItemCard({ href, imageSrc, title, desc }: Props) {
   return (
     <div className="border border-gray-500 rounded-sm min-h-48 p-1">
       <Link href={href} className="flex flex-col items-center gap-2 p-2">
-        <Image src={imageSrc} alt={title} width={80} height={80} />
+        <Image
+          loading="lazy"
+          src={imageSrc}
+          alt={title}
+          width={80}
+          height={80}
+        />
         <h2 className="text-lg font-bold text-red-400">{title}</h2>
         <p className="text-gray-300">{displayDesc}</p>
       </Link>
